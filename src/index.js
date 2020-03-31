@@ -1,9 +1,9 @@
 import './database';
 import { GraphQLServer } from 'graphql-yoga';
+import path from 'path';
 
 import { config } from './config';
 import { resolvers } from './graphql/resolvers';
-import { typeDefs } from './graphql/typeDefs';
 
 const {
 	APP: { PORT },
@@ -11,7 +11,7 @@ const {
 
 const server = new GraphQLServer({
 	resolvers,
-	typeDefs,
+	typeDefs: path.join(__dirname, 'graphql/schema.graphql'),
 });
 
 const configGraphql = { port: PORT, endpoint: '/api' };
